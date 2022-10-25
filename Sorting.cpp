@@ -13,7 +13,40 @@
 void CocktailShakerSort(int a[], int size)
 {
 	// TODO: assessed, [1.0]
-	
+	for(int i=0;i<size/2; i++)
+	{
+		bool swappedRight = false;
+		bool swappedLeft = false;
+
+		// Shake to the right
+		for(int j=0;j<size-i-1;j++)
+		{
+			if(a[j] > a[j+1])
+			{
+				int temp = a[j];
+				a[j] = a[j+1];
+				a[j+1] = temp;
+				swappedRight = true;
+			}
+		}
+
+		// Shake to the left
+		for(int j=size-2-i; j>i; j--)
+		{
+			if(a[j] < a[j-1])
+			{
+				int temp = a[j];
+				a[j] = a[j-1];
+				a[j-1] = temp;
+				swappedLeft = true;
+			}
+		}
+
+		if(!swappedLeft && !swappedRight)
+		{
+			break;
+		}
+	}
 }
 
 // IN-PLACE implementation of insertion sort.
@@ -21,6 +54,18 @@ void CocktailShakerSort(int a[], int size)
 void InsertionSort(int a[], int size)
 {
 	// TODO: assessed, [1.5]
+	for(int i=1; i < size; i++)
+	{
+		for(int j=i; j>0; j--)
+		{
+			if(a[j] < a[j-1])
+			{
+				int temp = a[j];
+				a[j] = a[j-1];
+				a[j-1] = temp;
+			}
+		}
+	}
 	
 }
 
