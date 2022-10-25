@@ -74,14 +74,40 @@ void InsertionSort(int a[], int size)
 int partition(int a[], int begin, int end)
 {
 	// TODO: assessed, [2.0]
-	return 0;
+	int pivot = a[end];
+	int smallerElementIndex = begin-1;
+
+	for(int i = begin; i < end; i++)
+	{
+		if(a[i] < pivot)
+		{
+			smallerElementIndex++;
+
+			int temp = a[i];
+			a[i] = a[smallerElementIndex];
+			a[smallerElementIndex] = temp;
+		}
+	}
+
+	int temp = a[smallerElementIndex + 1];
+	a[smallerElementIndex+1] = a[end];
+	a[end] = temp;
+
+	return smallerElementIndex + 1;
 }
 
 // Sorting using partition() and recusion. Runs in O(n log(n))
 void QuickSort(int a[], int begin, int end)
 {
 	// TODO: assessed, [0.5]
-	
+
+	if(begin < end)
+	{
+		int partitionIndex = partition(a,begin,end);
+		QuickSort(a,begin,partitionIndex - 1);
+		QuickSort(a,partitionIndex + 1,end);
+	}
+
 }
 
 // Takes an array and it's size (as int), fills the array with random values from 1 to size*3
